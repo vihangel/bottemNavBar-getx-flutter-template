@@ -1,12 +1,15 @@
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:getx_bottom_nav_sample/pages/dashboard/dashboard_controller.dart';
+import 'package:cronodoro/pages/dashboard/dashboard_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CounterController extends GetxController {
   static CounterController get to => Get.find();
   RxInt counter = 0.obs;
   RxBool isCategoriPageOpen = false.obs;
+
+  RxString selectedValue = "Timer 1".obs;
+  List<String> dropdownItems = ["Timer 1", "Timer 2"].obs;
 
   @override
   void onInit() {
@@ -15,8 +18,12 @@ class CounterController extends GetxController {
     super.onInit();
   }
 
+  void setDropDown(String? value) {
+    selectedValue.value = value.toString();
+  }
+
   void increaseCounter() {
-    counter.value++;
+    counter.value--;
   }
 
   void decreseCount() {

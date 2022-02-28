@@ -1,4 +1,4 @@
-package com.example.getx_bottom_nav_sample
+package com.example.cronodoro
 
 import io.flutter.embedding.android.FlutterActivity
 

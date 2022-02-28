@@ -1,6 +1,6 @@
 {
-    "name": "getx_bottom_nav_sample",
-    "short_name": "getx_bottom_nav_sample",
+    "name": "cronodoro",
+    "short_name": "cronodoro",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

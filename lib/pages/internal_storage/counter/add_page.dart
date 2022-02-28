@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:getx_bottom_nav_sample/pages/internal_storage/counter/counter_controller.dart';
+import 'package:cronodoro/pages/internal_storage/counter/counter_controller.dart';
 
 class AddCounter extends GetView<CounterController> {
   const AddCounter({Key? key}) : super(key: key);

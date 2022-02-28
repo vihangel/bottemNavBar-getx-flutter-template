@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.getx_bottom_nav_sample">
+    package="com.example.cronodoro">
    <application
-        android:label="getx_bottom_nav_sample"
-        android:icon="@mipmap/ic_launcher">
+        android:label="cronodoro"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

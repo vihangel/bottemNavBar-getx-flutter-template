@@ -1,32 +1,50 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:cronodoro/shared/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_bottom_nav_sample/pages/dashboard/dashboard.dart';
-import 'package:getx_bottom_nav_sample/pages/dashboard/dashboard_binding.dart';
+import 'package:cronodoro/pages/dashboard/dashboard.dart';
+import 'package:cronodoro/pages/dashboard/dashboard_binding.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
-  runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final savedThemeMode = await AdaptiveTheme.getThemeMode();
+
+  await GetStorage.init();
+  runApp(MyApp(savedThemeMode: savedThemeMode));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final AdaptiveThemeMode? savedThemeMode;
+  const MyApp({this.savedThemeMode});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return AdaptiveTheme(
+      light: ThemeData(
+        brightness: Brightness.light,
+        primarySwatch: Colors.orange,
       ),
-      initialRoute: "/",
-      initialBinding: DashboardBinding(),
-      getPages: [
-        GetPage(
-          name: "/",
-          page: () => MyDashBoard(),
-        ),
-      ],
+      dark: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: AppColors.primary,
+      ),
+      initial: savedThemeMode ?? AdaptiveThemeMode.light,
+      builder: (theme, darkTheme) => GetMaterialApp(
+        title: 'Cronodoro',
+        debugShowCheckedModeBanner: false,
+        theme: theme,
+        darkTheme: darkTheme,
+        themeMode: ThemeMode.dark,
+        initialRoute: "/",
+        initialBinding: DashboardBinding(),
+        getPages: [
+          GetPage(
+            name: "/",
+            page: () => MyDashBoard(),
+          ),
+        ],
+      ),
     );
   }
 }

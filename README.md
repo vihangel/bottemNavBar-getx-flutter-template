@@ -1,4 +1,4 @@
-# getx_bottom_nav_sample
+# cronodoro
 
 <img width="350" alt="Screenshot " src="https://user-images.githubusercontent.com/28912774/145162041-45f5f0ab-ae2f-4253-9a7a-61eb515ca299.gif">
 

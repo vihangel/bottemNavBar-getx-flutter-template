@@ -1,20 +1,42 @@
+import 'package:cronodoro/shared/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:getx_bottom_nav_sample/pages/internal_storage/counter/add_page.dart';
-import 'package:getx_bottom_nav_sample/pages/internal_storage/counter/counter_controller.dart';
-import 'package:getx_bottom_nav_sample/pages/internal_storage/counter/remove_page.dart';
+import 'package:cronodoro/pages/internal_storage/counter/add_page.dart';
+import 'package:cronodoro/pages/internal_storage/counter/counter_controller.dart';
+import 'package:cronodoro/pages/internal_storage/counter/remove_page.dart';
 
-class InternalStorage extends GetView<CounterController> {
-  const InternalStorage({Key? key}) : super(key: key);
+class TimerPage extends GetView<CounterController> {
+  const TimerPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        foregroundColor: AppColors.grey,
         elevation: 0,
-        title: Text('Internal Storage'),
+        title: Obx(
+          () => DropdownButton<String>(
+            value: controller.selectedValue.toString(),
+            onChanged: (String? value) {
+              controller.setDropDown(value);
+            },
+            items: controller.dropdownItems
+                .map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem(
+                value: value.toString(),
+                child: Text(value.toString()),
+              );
+            }).toList(),
+          ),
+        ),
+        actions: [
+          Icon(
+            Icons.play_arrow_rounded,
+            color: AppColors.secondary,
+            size: 50,
+          )
+        ],
       ),
       body: Center(
         child: Column(
